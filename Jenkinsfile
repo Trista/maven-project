@@ -17,7 +17,7 @@ pipeline {
 
                 success {
 
-                    Get-Contents 'Now Archiving...'
+                    echo 'Now Archiving...'
 
                     archiveArtifacts artifacts: '**/target/*.war'
 
