@@ -1,10 +1,12 @@
 pipeline {
     agent any
     
+    /*
     parameters { 
          string(name: 'tomcat_dev', defaultValue: '18.217.54.10', description: 'Staging Server')
          string(name: 'tomcat_prod', defaultValue: '18.191.194.166', description: 'Production Server')
-    } 
+    }
+    */
  
     triggers {
          pollSCM('* * * * *') // Polling Source Control
@@ -27,13 +29,13 @@ stages{
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                        bat "winscp -i C:\Users\WorkWork\Desktop\DevOps\AWS\Keys\tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapps"
+                        bat "C:\\Users\\WorkWork\\Desktop\\winscptoawstest.bat"
                     }
                 }
  
                 stage ("Deploy to Production"){
                     steps {
-                        bat "winscp -i C:\Users\WorkWork\Desktop\DevOps\AWS\Keys\tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
+                        bat "C:\\Users\\WorkWork\\Desktop\\winscptoawsprod.bat"
                     }
                 }
             }
